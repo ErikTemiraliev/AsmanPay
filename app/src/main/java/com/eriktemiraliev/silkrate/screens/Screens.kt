@@ -231,14 +231,14 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(60.dp))
 
         Text(
-            text = "Welcome Back",
+            text = stringResource(R.string.welcome_back),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = NavyBlue
         )
 
         Text(
-            text = "Login with email or Chinese phone number",
+            text = stringResource(R.string.login_subtitle),
             color = Color.Gray
         )
 
@@ -247,13 +247,13 @@ fun LoginScreen(
         AppTextField(
             value = loginInput,
             onValueChange = { loginInput = it },
-            label = "Email or Chinese Phone Number"
+            label = stringResource(R.string.email_or_phone_label)
         )
 
         AppTextField(
             value = password,
             onValueChange = { password = it },
-            label = "Password",
+            label = stringResource(R.string.password_label),
             keyboardType = KeyboardType.Password,
             isPassword = true
         )
@@ -285,20 +285,15 @@ fun LoginScreen(
             colors = ButtonDefaults.buttonColors(containerColor = NavyBlue),
             shape = RoundedCornerShape(14.dp)
         ) {
-            Text("Log In")
+            Text(stringResource(R.string.log_in_button))
         }
 
         TextButton(onClick = onGoToSignup) {
-            Text("Create new account")
+            Text(stringResource(R.string.create_new_account))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            text = "Demo login: erik@example.com / 123456",
-            color = Color.Gray,
-            fontSize = 13.sp
-        )
     }
 }
 

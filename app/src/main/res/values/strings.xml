@@ -6,8 +6,8 @@
     <string name="security">Security</string>
     <string name="new_password_label">New Password</string>
     <string name="save_changes">Save Changes</string>
-    <string name="account_identity">Account Identity</string>
 
+    <string name="account_identity">Account Identity</string>
     <string name="app_name">SilkRate</string>
     <string name="app_subtitle">Safe currency exchange helper</string>
 
@@ -31,8 +31,7 @@
     <string name="email_or_phone_label">Email or Telephone Phone Number</string>
     <string name="log_in_button">Log In</string>
     <string name="create_new_account">Create new account</string>
-    <string name="demo_login_hint">Demo login: erik@example.com / 123456</string>
-    <string name="demo_login_error">Demo login: erik@example.com / 123456</string>
+    <string name="demo_login_error">Invalid email, phone number, or password.</string>
 
     <string name="nav_home">Home</string>
     <string name="nav_contacts">Contacts</string>

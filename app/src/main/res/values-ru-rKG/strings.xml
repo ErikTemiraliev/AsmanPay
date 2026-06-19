@@ -31,8 +31,7 @@
     <string name="email_or_phone_label">Email или номер телефона</string>
     <string name="log_in_button">Войти</string>
     <string name="create_new_account">Создать новый аккаунт</string>
-    <string name="demo_login_hint">Демо-вход: erik@example.com / 123456</string>
-    <string name="demo_login_error">Демо-вход: erik@example.com / 123456</string>
+    <string name="demo_login_error">Неверный email, номер телефона или пароль.</string>
 
     <string name="nav_home">Главная</string>
     <string name="nav_contacts">Контакты</string>
