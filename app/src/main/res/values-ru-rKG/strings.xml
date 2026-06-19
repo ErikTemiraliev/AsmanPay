@@ -1,0 +1,76 @@
+<resources>
+    <string name="account_settings">Настройки аккаунта</string>
+    <string name="profile_picture">Фото профиля</string>
+    <string name="change_picture">Изменить фото</string>
+    <string name="contact_information">Контактная информация</string>
+    <string name="security">Безопасность</string>
+    <string name="new_password_label">Новый пароль</string>
+    <string name="save_changes">Сохранить изменения</string>
+    <string name="account_identity">Данные личности</string>
+
+    <string name="app_name">SilkRate</string>
+    <string name="home_hero_title">SilkRate</string>
+    <string name="home_hero_subtitle">Безопасный обмен валют</string>
+    <string name="exchange_pair">Пара валют</string>
+    <string name="quick_amounts">Быстрые суммы</string>
+    <string name="rate_label">Курс</string>
+    <string name="convert_card_title">Конвертация валют</string>
+
+    <string name="app_subtitle">Безопасный помощник для обмена валют</string>
+
+    <string name="passport_number_label">Номер паспорта</string>
+    <string name="full_real_name_label">Полное настоящее имя</string>
+    <string name="chinese_phone_label">Номер телефона с кодом страны</string>
+    <string name="email_address_label">Адрес электронной почты</string>
+    <string name="password_label">Пароль</string>
+    <string name="create_account_button">Создать аккаунт</string>
+    <string name="already_have_account">Уже есть аккаунт? Войти</string>
+
+    <string name="welcome_back">С возвращением</string>
+    <string name="login_subtitle">Вход по email или китайскому номеру</string>
+    <string name="email_or_phone_label">Email или номер телефона</string>
+    <string name="log_in_button">Войти</string>
+    <string name="create_new_account">Создать новый аккаунт</string>
+    <string name="demo_login_hint">Демо-вход: erik@example.com / 123456</string>
+    <string name="demo_login_error">Демо-вход: erik@example.com / 123456</string>
+
+    <string name="nav_home">Главная</string>
+    <string name="nav_contacts">Контакты</string>
+    <string name="nav_favorites">Избранное</string>
+    <string name="nav_profile">Профиль</string>
+
+    <string name="currency_converter_title">Конвертер валют</string>
+    <string name="currency_converter_subtitle">CNY • USD • KGS</string>
+    <string name="sample_rates_notice">Для демонстрации используются примерные курсы валют.</string>
+    <string name="enter_amount_label">Введите сумму</string>
+    <string name="from_label">Из</string>
+    <string name="to_label">В</string>
+    <string name="estimated_result_label">Примерный результат</string>
+    <string name="estimated_result_value">%1$.2f %2$s</string>
+
+    <string name="trusted_contacts_title">Доверенные контакты</string>
+    <string name="trusted_contacts_subtitle">Примеры безопасных контактов для обмена</string>
+    <string name="verified_label">Подтвержден</string>
+    <string name="pending_label">Ожидает</string>
+    <string name="rating_value">Рейтинг: %1$.1f</string>
+
+    <string name="favorite_amounts_title">Избранные суммы</string>
+    <string name="favorite_amounts_subtitle">Сохраните часто используемые суммы</string>
+    <string name="amount_label">Сумма</string>
+    <string name="add_favorite_amount">Добавить сумму</string>
+
+    <string name="profile_title">Профиль</string>
+    <string name="profile_subtitle">Прототип аккаунта с паспортом</string>
+    <string name="verified_account_text">Подтвержденный аккаунт</string>
+    <string name="passport_number_value">Номер паспорта: %1$s</string>
+    <string name="verified_status_value">Статус проверки: %1$s</string>
+    <string name="not_real_verification_note">Это не настоящая проверка паспорта.</string>
+    <string name="save_profile">Сохранить профиль</string>
+    <string name="profile_updated">Профиль обновлен локально</string>
+
+    <string name="validation_passport_required">Введите номер паспорта.</string>
+    <string name="validation_full_name_required">Введите настоящее полное имя.</string>
+    <string name="validation_chinese_phone_required">Введите правильный номер телефона с кодом страны.</string>
+    <string name="validation_email_required">Введите правильный email.</string>
+    <string name="validation_password_required">Пароль должен быть не менее 6 символов.</string>
+</resources>
