@@ -662,11 +662,11 @@ fun ProfileScreen(
     val profileUpdatedText = stringResource(R.string.profile_updated)
 
     val avatarColors = listOf(
-        NavyBlue,
         BrightBlue,
         Color(0xFF304FFE),
         Color(0xFF00695C),
-        Color(0xFF4A148C)
+        Color(0xFF4A148C),
+        Color(0xFF1565C0)
     )
 
     LazyColumn(
@@ -698,45 +698,55 @@ fun ProfileScreen(
                 shape = RoundedCornerShape(28.dp),
                 colors = CardDefaults.cardColors(containerColor = NavyBlue)
             ) {
-                Column(
-                    modifier = Modifier.padding(22.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    ProfileAvatar(
-                        fullName = user.fullName,
-                        backgroundColor = avatarColors[avatarColorIndex]
-                    )
+                Column(modifier = Modifier.padding(22.dp)) {
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        ProfileAvatar(
+                            fullName = user.fullName,
+                            backgroundColor = avatarColors[avatarColorIndex]
+                        )
 
-                    Text(
-                        text = user.fullName,
-                        color = Color.White,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                        Spacer(modifier = Modifier.width(18.dp))
 
-                    Spacer(modifier = Modifier.height(4.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = user.fullName,
+                                color = Color.White,
+                                fontSize = 23.sp,
+                                fontWeight = FontWeight.Bold
+                            )
 
-                    Text(
-                        text = stringResource(R.string.verified_account_text),
-                        color = Color.White.copy(alpha = 0.85f),
-                        fontSize = 15.sp
-                    )
+                            Spacer(modifier = Modifier.height(4.dp))
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = stringResource(R.string.verified_account_text),
+                                color = Color.White.copy(alpha = 0.82f),
+                                fontSize = 15.sp
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(18.dp))
 
                     Button(
                         onClick = {
                             avatarColorIndex = (avatarColorIndex + 1) % avatarColors.size
                         },
+                        modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.White,
                             contentColor = NavyBlue
                         ),
-                        shape = RoundedCornerShape(14.dp)
+                        shape = RoundedCornerShape(16.dp),
+                        contentPadding = PaddingValues(vertical = 12.dp)
                     ) {
-                        Text(stringResource(R.string.change_picture))
+                        Text(
+                            text = stringResource(R.string.change_picture),
+                            fontWeight = FontWeight.Bold
+                        )
                     }
                 }
             }
@@ -860,14 +870,14 @@ fun ProfileAvatar(
 
     Box(
         modifier = Modifier
-            .size(86.dp)
+            .size(70.dp)
             .background(backgroundColor, RoundedCornerShape(50)),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = initials.ifBlank { "SR" },
             color = Color.White,
-            fontSize = 28.sp,
+            fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
     }
