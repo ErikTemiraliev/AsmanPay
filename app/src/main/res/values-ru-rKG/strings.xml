@@ -8,8 +8,8 @@
     <string name="save_changes">Сохранить изменения</string>
     <string name="account_identity">Данные личности</string>
 
-    <string name="app_name">SilkRate</string>
-    <string name="home_hero_title">SilkRate</string>
+    <string name="app_name">AsmanPay</string>
+    <string name="home_hero_title">AsmanPay</string>
     <string name="home_hero_subtitle">Безопасный обмен валют</string>
     <string name="exchange_pair">Пара валют</string>
     <string name="quick_amounts">Быстрые суммы</string>
@@ -39,7 +39,7 @@
     <string name="nav_profile">Профиль</string>
 
     <string name="currency_converter_title">Конвертер валют</string>
-    <string name="currency_converter_subtitle">CNY • USD • KGS</string>
+    <string name="currency_converter_subtitle">CNY • USD • KGS • KZT</string>
     <string name="sample_rates_notice">Для демонстрации используются примерные курсы валют.</string>
     <string name="enter_amount_label">Введите сумму</string>
     <string name="from_label">Из</string>

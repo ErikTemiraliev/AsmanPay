@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.eriktemiraliev.silkrate"
+    namespace = "com.eriktemiraliev.asmanpay"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.eriktemiraliev.silkrate"
+        applicationId = "com.eriktemiraliev.asmanpay"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

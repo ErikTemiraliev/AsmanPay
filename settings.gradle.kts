@@ -23,5 +23,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SilkRate"
+rootProject.name = "AsmanPay"
 include(":app")
