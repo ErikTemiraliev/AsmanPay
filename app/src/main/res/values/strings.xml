@@ -48,10 +48,40 @@
     <string name="estimated_result_value">%1$.2f %2$s</string>
 
     <string name="trusted_contacts_title">Trusted Contacts</string>
-    <string name="trusted_contacts_subtitle">Safe exchange contact examples</string>
+    <string name="trusted_contacts_subtitle">Your people for safe peer-to-peer exchange</string>
     <string name="verified_label">Verified</string>
     <string name="pending_label">Pending</string>
     <string name="rating_value">Rating: %1$.1f</string>
+    <string name="unverified_label">Not verified</string>
+    <string name="cancel">Cancel</string>
+    <string name="contacts_search_hint">Search by name, phone or note</string>
+    <string name="contacts_no_matches">No contacts match “%1$s”.</string>
+    <string name="contacts_add">Add contact</string>
+    <string name="contacts_add_first">Add your first contact</string>
+    <string name="contacts_add_title">New trusted contact</string>
+    <string name="contacts_empty_title">No trusted contacts yet</string>
+    <string name="contacts_empty_message">Add the people you exchange currency with. After each exchange, rate it so you can see who has been reliable.</string>
+    <string name="contacts_verification_notice">Contacts you add are marked Not verified. Identity verification by AsmanPay is coming in a later version.</string>
+    <string name="contacts_name_label">Full name</string>
+    <string name="contacts_note_label">Note (optional), e.g. where you met</string>
+    <string name="contacts_save">Save</string>
+    <string name="contacts_added_on">Added %1$s</string>
+    <string name="contacts_no_exchanges">No exchanges yet</string>
+    <string name="contacts_rate_exchange">Rate an exchange</string>
+    <string name="contacts_rate_title">Rate your exchange with %1$s</string>
+    <string name="contacts_rate_message">How did this exchange go?</string>
+    <string name="contacts_star_description">%1$d stars</string>
+    <string name="contacts_remove">Remove</string>
+    <string name="contacts_remove_title">Remove %1$s?</string>
+    <string name="contacts_remove_message">Their exchange history and ratings will be deleted from this device.</string>
+    <string name="contacts_error_name_required">Please enter the contact\'s name.</string>
+    <string name="contacts_error_name_too_long">Name must be 60 characters or fewer.</string>
+    <string name="contacts_error_duplicate_phone">This phone number is already in your contacts.</string>
+    <string name="contacts_error_note_too_long">Note must be 200 characters or fewer.</string>
+    <plurals name="contacts_exchange_count">
+        <item quantity="one">%d exchange</item>
+        <item quantity="other">%d exchanges</item>
+    </plurals>
 
     <string name="favorite_amounts_title">Favorite Amounts</string>
     <string name="favorite_amounts_subtitle">Save common exchange amounts</string>

@@ -9,13 +9,6 @@ data class UserAccount(
     val verified: Boolean = true
 )
 
-data class TrustedContact(
-    val name: String,
-    val phone: String,
-    val rating: Double,
-    val verified: Boolean
-)
-
 data class FavoriteAmount(
     val amount: String,
     val currency: String
