@@ -10,6 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.eriktemiraliev.asmanpay.favorites.FavoriteAmount
 
 @Composable
 fun AsmanPayApp() {
@@ -47,6 +48,8 @@ fun MainAppScreen(
     onUserUpdated: (UserAccount) -> Unit
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
+    // A favorite picked on the Favorites tab, to open in the converter.
+    var pendingConversion by remember { mutableStateOf<FavoriteAmount?>(null) }
 
     val tabs = listOf("Home", "Contacts", "Favorites", "Profile")
     val tabIcons = listOf(
@@ -63,7 +66,10 @@ fun MainAppScreen(
                 tabs.forEachIndexed { index, title ->
                     NavigationBarItem(
                         selected = selectedTab == index,
-                        onClick = { selectedTab = index },
+                        onClick = {
+                            pendingConversion = null
+                            selectedTab = index
+                        },
                         icon = {
                             Icon(
                                 imageVector = tabIcons[index],
@@ -83,9 +89,12 @@ fun MainAppScreen(
     ) { padding ->
         Box(modifier = Modifier.padding(padding)) {
             when (selectedTab) {
-                0 -> HomeScreen()
+                0 -> HomeScreen(initialConversion = pendingConversion)
                 1 -> TrustedContactsScreen()
-                2 -> FavoriteAmountsScreen()
+                2 -> FavoriteAmountsScreen(onUse = {
+                    pendingConversion = it
+                    selectedTab = 0
+                })
                 3 -> ProfileScreen(user = user, onUserUpdated = onUserUpdated)
             }
         }

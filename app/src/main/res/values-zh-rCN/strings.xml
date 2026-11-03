@@ -83,9 +83,30 @@
     </plurals>
 
     <string name="favorite_amounts_title">常用金额</string>
-    <string name="favorite_amounts_subtitle">保存常用换算金额</string>
+    <string name="favorite_amounts_subtitle">一键重复常用的换算</string>
     <string name="amount_label">金额</string>
     <string name="add_favorite_amount">添加常用金额</string>
+    <string name="favorites_add_title">保存换算</string>
+    <string name="favorites_empty_title">还没有常用金额</string>
+    <string name="favorites_empty_message">保存经常换算的金额，例如房租或学费。最常用的会显示在首页作为快捷按钮。</string>
+    <string name="favorites_conversion">%1$s %2$s → %3$s</string>
+    <string name="favorites_estimate">按当前汇率约 %1$s %2$s</string>
+    <string name="favorites_not_used">尚未使用</string>
+    <plurals name="favorites_used_count">
+        <item quantity="other">已使用 %d 次</item>
+    </plurals>
+    <string name="favorites_remove_description">删除 %1$s</string>
+    <string name="favorites_shortcuts_title">我的常用金额</string>
+    <string name="favorites_shortcuts_hint">提示：把换算保存为常用金额，这里就会出现您的快捷按钮。</string>
+    <string name="favorites_save_current">保存为常用</string>
+    <string name="favorites_saved">已保存为常用</string>
+    <string name="favorites_error_invalid_amount">请输入大于零的金额。</string>
+    <string name="favorites_error_too_many_decimals">最多保留 %1$d 位小数。</string>
+    <string name="favorites_error_too_large">金额不能超过 %1$s。</string>
+    <string name="favorites_error_unsupported_currency">不支持该货币。</string>
+    <string name="favorites_error_same_currency">请选择两种不同的货币。</string>
+    <string name="favorites_error_duplicate">该换算已在常用金额中。</string>
+    <string name="favorites_error_limit">最多可保存 %1$d 个常用金额。请先删除一个再添加。</string>
 
     <string name="profile_title">个人资料</string>
     <string name="profile_subtitle">基于护照的原型账户</string>

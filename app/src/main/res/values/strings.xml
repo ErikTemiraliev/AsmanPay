@@ -84,9 +84,31 @@
     </plurals>
 
     <string name="favorite_amounts_title">Favorite Amounts</string>
-    <string name="favorite_amounts_subtitle">Save common exchange amounts</string>
+    <string name="favorite_amounts_subtitle">One-tap shortcuts for the conversions you repeat</string>
     <string name="amount_label">Amount</string>
     <string name="add_favorite_amount">Add Favorite Amount</string>
+    <string name="favorites_add_title">Save a conversion</string>
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty_message">Save the amounts you convert often, like rent or tuition. Your most used ones appear as shortcuts on the Home screen.</string>
+    <string name="favorites_conversion">%1$s %2$s → %3$s</string>
+    <string name="favorites_estimate">≈ %1$s %2$s at current rates</string>
+    <string name="favorites_not_used">Not used yet</string>
+    <plurals name="favorites_used_count">
+        <item quantity="one">Used %d time</item>
+        <item quantity="other">Used %d times</item>
+    </plurals>
+    <string name="favorites_remove_description">Remove %1$s</string>
+    <string name="favorites_shortcuts_title">Your favorites</string>
+    <string name="favorites_shortcuts_hint">Tip: save a conversion as a favorite to get your own shortcuts here.</string>
+    <string name="favorites_save_current">Save as favorite</string>
+    <string name="favorites_saved">Saved to favorites</string>
+    <string name="favorites_error_invalid_amount">Enter an amount greater than zero.</string>
+    <string name="favorites_error_too_many_decimals">Use at most %1$d decimal places.</string>
+    <string name="favorites_error_too_large">Amount must be %1$s or less.</string>
+    <string name="favorites_error_unsupported_currency">This currency isn\'t supported.</string>
+    <string name="favorites_error_same_currency">Choose two different currencies.</string>
+    <string name="favorites_error_duplicate">This conversion is already in your favorites.</string>
+    <string name="favorites_error_limit">You can save up to %1$d favorites. Remove one to add another.</string>
 
     <string name="profile_title">Profile</string>
     <string name="profile_subtitle">Passport-based account</string>

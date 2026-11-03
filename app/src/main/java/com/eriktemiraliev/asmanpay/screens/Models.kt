@@ -8,8 +8,3 @@ data class UserAccount(
     val password: String,
     val verified: Boolean = true
 )
-
-data class FavoriteAmount(
-    val amount: String,
-    val currency: String
-)
