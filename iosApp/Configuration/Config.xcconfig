@@ -1,0 +1,5 @@
+// Settings for the iOS app. To run on a real iPhone, put your Apple team ID
+// after TEAM_ID= (Xcode > Settings > Accounts shows it). The simulator doesn't need it.
+TEAM_ID=
+BUNDLE_ID=com.eriktemiraliev.asmanpay
+APP_NAME=AsmanPay

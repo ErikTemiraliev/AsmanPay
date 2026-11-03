@@ -1,0 +1,61 @@
+name: iOS CI
+
+# Builds the iOS app on a Mac, so we know the iPhone version still compiles
+# even when nobody has opened Xcode. Nothing is signed or uploaded.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build iOS app and run shared tests on the simulator
+    runs-on: macos-15
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # The Kotlin/Native compiler and its tools are large; keep them between runs.
+      - name: Cache Kotlin/Native toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('gradle/libs.versions.toml') }}
+
+      - name: Run shared unit tests on the iOS simulator
+        run: ./gradlew --stacktrace :shared:iosSimulatorArm64Test
+
+      - name: Build the iOS app for the simulator
+        working-directory: iosApp
+        run: |
+          xcodebuild \
+            -project iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-test-reports
+          path: shared/build/reports/tests/

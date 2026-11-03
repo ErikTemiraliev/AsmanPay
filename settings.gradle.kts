@@ -25,3 +25,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AsmanPay"
 include(":app")
+include(":shared")

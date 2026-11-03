@@ -1,0 +1,129 @@
+<resources>
+    <string name="account_settings">账户设置</string>
+    <string name="profile_picture">头像</string>
+    <string name="change_picture">更换头像</string>
+    <string name="contact_information">联系信息</string>
+    <string name="security">安全设置</string>
+    <string name="new_password_label">新密码</string>
+    <string name="save_changes">保存修改</string>
+    <string name="account_identity">身份信息</string>
+
+    <string name="app_name">Asman Pay</string>
+    <string name="home_hero_title">Asman Pay</string>
+    <string name="home_hero_subtitle">让换汇更安全</string>
+    <string name="exchange_pair">换算货币</string>
+    <string name="quick_amounts">快捷金额</string>
+    <string name="rate_label">汇率</string>
+    <string name="convert_card_title">货币换算</string>
+
+    <string name="app_subtitle">安全换汇助手</string>
+
+    <string name="passport_number_label">护照号码</string>
+    <string name="full_real_name_label">真实姓名</string>
+    <string name="chinese_phone_label">带国家区号的电话号码</string>
+    <string name="email_address_label">电子邮箱</string>
+    <string name="password_label">密码</string>
+    <string name="create_account_button">创建账户</string>
+    <string name="already_have_account">已有账户？登录</string>
+
+    <string name="welcome_back">欢迎回来</string>
+    <string name="login_subtitle">使用邮箱或带国家区号电话号码登录</string>
+    <string name="email_or_phone_label">邮箱或电话号码</string>
+    <string name="log_in_button">登录</string>
+    <string name="create_new_account">创建新账户</string>
+    <string name="demo_login_error">邮箱、电话号码或密码错误。</string>
+
+    <string name="nav_home">首页</string>
+    <string name="nav_contacts">联系人</string>
+    <string name="nav_favorites">常用金额</string>
+    <string name="nav_profile">个人资料</string>
+
+    <string name="currency_converter_title">汇率换算</string>
+    <string name="currency_converter_subtitle">人民币 • 美元 • 索姆 • 坚戈</string>
+    <string name="sample_rates_notice">当前使用示例汇率，仅用于课程设计演示。</string>
+    <string name="enter_amount_label">输入金额</string>
+    <string name="from_label">从</string>
+    <string name="to_label">到</string>
+    <string name="estimated_result_label">预计结果</string>
+    <string name="estimated_result_value">%1$s %2$s</string>
+
+    <string name="trusted_contacts_title">可信联系人</string>
+    <string name="trusted_contacts_subtitle">安全点对点换汇的可信联系人</string>
+    <string name="verified_label">已认证</string>
+    <string name="pending_label">待确认</string>
+    <string name="rating_value">评分：%1$s</string>
+    <string name="unverified_label">未认证</string>
+    <string name="cancel">取消</string>
+    <string name="contacts_search_hint">按姓名、电话或备注搜索</string>
+    <string name="contacts_no_matches">没有与“%1$s”匹配的联系人。</string>
+    <string name="contacts_add">添加联系人</string>
+    <string name="contacts_add_first">添加第一个联系人</string>
+    <string name="contacts_add_title">新的可信联系人</string>
+    <string name="contacts_empty_title">还没有可信联系人</string>
+    <string name="contacts_empty_message">添加与您换汇的人。每次换汇后进行评分，就能看出谁更可靠。</string>
+    <string name="contacts_verification_notice">您添加的联系人标记为“未认证”。Asman Pay 身份认证将在后续版本推出。</string>
+    <string name="contacts_name_label">全名</string>
+    <string name="contacts_note_label">备注（可选），例如在哪里认识</string>
+    <string name="contacts_save">保存</string>
+    <string name="contacts_added_on">添加于 %1$s</string>
+    <string name="contacts_no_exchanges">暂无换汇记录</string>
+    <string name="contacts_rate_exchange">评价换汇</string>
+    <string name="contacts_rate_title">评价与 %1$s 的换汇</string>
+    <string name="contacts_rate_message">这次换汇顺利吗？</string>
+    <string name="contacts_star_description">%1$d 星</string>
+    <string name="contacts_remove">删除</string>
+    <string name="contacts_remove_title">删除 %1$s？</string>
+    <string name="contacts_remove_message">其换汇记录和评分将从本设备删除。</string>
+    <string name="contacts_error_name_required">请输入联系人姓名。</string>
+    <string name="contacts_error_name_too_long">姓名不能超过 60 个字符。</string>
+    <string name="contacts_error_duplicate_phone">此电话号码已在您的联系人中。</string>
+    <string name="contacts_error_note_too_long">备注不能超过 200 个字符。</string>
+    <plurals name="contacts_exchange_count">
+        <item quantity="other">%1$d 次换汇</item>
+    </plurals>
+
+    <string name="favorite_amounts_title">常用金额</string>
+    <string name="favorite_amounts_subtitle">一键重复常用的换算</string>
+    <string name="amount_label">金额</string>
+    <string name="add_favorite_amount">添加常用金额</string>
+    <string name="favorites_add_title">保存换算</string>
+    <string name="favorites_empty_title">还没有常用金额</string>
+    <string name="favorites_empty_message">保存经常换算的金额，例如房租或学费。最常用的会显示在首页作为快捷按钮。</string>
+    <string name="favorites_conversion">%1$s %2$s → %3$s</string>
+    <string name="favorites_estimate">按当前汇率约 %1$s %2$s</string>
+    <string name="favorites_not_used">尚未使用</string>
+    <plurals name="favorites_used_count">
+        <item quantity="other">已使用 %1$d 次</item>
+    </plurals>
+    <string name="favorites_remove_description">删除 %1$s</string>
+    <string name="favorites_shortcuts_title">我的常用金额</string>
+    <string name="favorites_shortcuts_hint">提示：把换算保存为常用金额，这里就会出现您的快捷按钮。</string>
+    <string name="favorites_save_current">保存为常用</string>
+    <string name="favorites_saved">已保存为常用</string>
+    <string name="favorites_error_invalid_amount">请输入大于零的金额。</string>
+    <string name="favorites_error_too_many_decimals">最多保留 %1$d 位小数。</string>
+    <string name="favorites_error_too_large">金额不能超过 %1$s。</string>
+    <string name="favorites_error_unsupported_currency">不支持该货币。</string>
+    <string name="favorites_error_same_currency">请选择两种不同的货币。</string>
+    <string name="favorites_error_duplicate">该换算已在常用金额中。</string>
+    <string name="favorites_error_limit">最多可保存 %1$d 个常用金额。请先删除一个再添加。</string>
+
+    <string name="profile_title">个人资料</string>
+    <string name="profile_subtitle">基于护照的原型账户</string>
+    <string name="verified_account_text">已认证账户</string>
+    <string name="passport_number_value">护照号码：%1$s</string>
+    <string name="verified_status_value">认证状态：%1$s</string>
+    <string name="not_real_verification_note">这不是真实的护照认证。</string>
+    <string name="save_profile">保存资料</string>
+    <string name="profile_updated">个人资料已在本地更新</string>
+
+    <string name="validation_passport_required">请输入护照号码。</string>
+    <string name="validation_full_name_required">请输入真实完整姓名。</string>
+    <string name="validation_chinese_phone_required">请输入带国家区号的正确电话号码。</string>
+    <string name="validation_email_required">请输入正确的邮箱地址。</string>
+    <string name="validation_password_required">密码至少需要6位。</string>
+    <string name="rates_live_updated">实时汇率，更新于 %1$s</string>
+    <string name="rates_live">实时汇率</string>
+    <string name="rates_cached">离线：使用 %1$s 保存的汇率</string>
+    <string name="rates_cached_unknown_time">离线：使用已保存的汇率</string>
+</resources>
