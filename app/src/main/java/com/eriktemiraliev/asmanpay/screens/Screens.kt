@@ -1,4 +1,4 @@
-package com.eriktemiraliev.silkrate.screens
+package com.eriktemiraliev.asmanpay.screens
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
@@ -6,7 +6,9 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.res.stringResource
-import com.eriktemiraliev.silkrate.R
+import com.eriktemiraliev.asmanpay.R
+import com.eriktemiraliev.asmanpay.exchange.ExchangeRates
+import com.eriktemiraliev.asmanpay.exchange.calculateExchange
 import android.util.Patterns
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -53,7 +55,7 @@ data class FavoriteAmount(
 )
 
 @Composable
-fun SilkRateApp() {
+fun AsmanPayApp() {
     var currentUser by remember { mutableStateOf<UserAccount?>(null) }
     var showLogin by remember { mutableStateOf(false) }
 
@@ -948,14 +950,18 @@ fun CurrencySelector(
     onSelected: (String) -> Unit
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = Modifier.padding(vertical = 8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
     ) {
-        listOf("CNY", "USD", "KGS").forEach { currency ->
+        ExchangeRates.supportedCurrencies.forEach { currency ->
             val selectedCurrency = selected == currency
 
             Button(
                 onClick = { onSelected(currency) },
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(horizontal = 4.dp, vertical = 8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (selectedCurrency) NavyBlue else Color.White,
                     contentColor = if (selectedCurrency) Color.White else NavyBlue
@@ -1099,25 +1105,4 @@ fun isValidChinesePhone(phone: String): Boolean {
     val internationalPhone = Regex("^\\+[1-9]\\d{6,14}$")
 
     return internationalPhone.matches(cleaned)
-}
-
-fun calculateExchange(amount: Double, from: String, to: String): Double {
-    if (from == to) return amount
-
-    val cnyToUsd = 0.14
-    val usdToCny = 7.20
-    val cnyToKgs = 12.20
-    val kgsToCny = 0.082
-    val usdToKgs = 87.80
-    val kgsToUsd = 0.011
-
-    return when ("$from-$to") {
-        "CNY-USD" -> amount * cnyToUsd
-        "USD-CNY" -> amount * usdToCny
-        "CNY-KGS" -> amount * cnyToKgs
-        "KGS-CNY" -> amount * kgsToCny
-        "USD-KGS" -> amount * usdToKgs
-        "KGS-USD" -> amount * kgsToUsd
-        else -> 0.0
-    }
 }

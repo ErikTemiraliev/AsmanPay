@@ -1,4 +1,4 @@
-package com.eriktemiraliev.silkrate.ui.theme
+package com.eriktemiraliev.asmanpay.ui.theme
 
 import androidx.compose.material3.Typography
 

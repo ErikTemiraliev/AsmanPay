@@ -8,8 +8,8 @@
     <string name="save_changes">保存修改</string>
     <string name="account_identity">身份信息</string>
 
-    <string name="app_name">SilkRate</string>
-    <string name="home_hero_title">SilkRate</string>
+    <string name="app_name">AsmanPay</string>
+    <string name="home_hero_title">AsmanPay</string>
     <string name="home_hero_subtitle">让换汇更安全</string>
     <string name="exchange_pair">换算货币</string>
     <string name="quick_amounts">快捷金额</string>
@@ -39,7 +39,7 @@
     <string name="nav_profile">个人资料</string>
 
     <string name="currency_converter_title">汇率换算</string>
-    <string name="currency_converter_subtitle">人民币 • 美元 • 索姆</string>
+    <string name="currency_converter_subtitle">人民币 • 美元 • 索姆 • 坚戈</string>
     <string name="sample_rates_notice">当前使用示例汇率，仅用于课程设计演示。</string>
     <string name="enter_amount_label">输入金额</string>
     <string name="from_label">从</string>

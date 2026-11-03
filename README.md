@@ -1,14 +1,14 @@
-# SilkRate-Android
+# AsmanPay (Android)
 
-A safe China–Kyrgyzstan currency conversion and anti-scam helper Android app.
+AsmanPay is a currency conversion and anti-scam helper for the China–Central Asia corridor. It grew out of the SilkRate prototype.
 
 ## What it does
 
-Helps users check real-time exchange rates and avoid common scams when converting currency between China and Kyrgyzstan.
+Helps users check exchange rates between CNY, USD, KGS and KZT, and avoid common scams when exchanging currency peer to peer.
 
 ## Features
 
-- Real-time exchange rate lookup
+- Currency conversion across CNY, USD, KGS and KZT (sample reference rates for now)
 - Anti-scam detection/warnings
 - Simple, clean interface
 

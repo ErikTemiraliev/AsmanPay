@@ -8,10 +8,10 @@
     <string name="save_changes">Save Changes</string>
 
     <string name="account_identity">Account Identity</string>
-    <string name="app_name">SilkRate</string>
+    <string name="app_name">AsmanPay</string>
     <string name="app_subtitle">Safe currency exchange helper</string>
 
-    <string name="home_hero_title">SilkRate</string>
+    <string name="home_hero_title">AsmanPay</string>
     <string name="home_hero_subtitle">Currency exchange made safer</string>
     <string name="exchange_pair">Exchange Pair</string>
     <string name="quick_amounts">Quick Amounts</string>
@@ -39,7 +39,7 @@
     <string name="nav_profile">Profile</string>
 
     <string name="currency_converter_title">Currency Converter</string>
-    <string name="currency_converter_subtitle">CNY • USD • KGS</string>
+    <string name="currency_converter_subtitle">CNY • USD • KGS • KZT</string>
     <string name="sample_rates_notice">Sample exchange rates are used for prototype demonstration.</string>
     <string name="enter_amount_label">Enter Amount</string>
     <string name="from_label">From</string>
