@@ -27,15 +27,18 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      # The unit tests live in shared/src/commonTest and run on the JVM here.
       - name: Build debug APK and run unit tests
-        run: ./gradlew --stacktrace assembleDebug testDebugUnitTest
+        run: ./gradlew --stacktrace assembleDebug :shared:testAndroidHostTest
 
       - name: Upload unit test reports
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: unit-test-reports
-          path: app/build/reports/tests/
+          path: |
+            app/build/reports/tests/
+            shared/build/reports/tests/
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
