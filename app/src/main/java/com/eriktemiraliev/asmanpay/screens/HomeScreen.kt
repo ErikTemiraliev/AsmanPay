@@ -20,24 +20,48 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.widget.Toast
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import com.eriktemiraliev.asmanpay.favorites.AddFavoriteResult
+import com.eriktemiraliev.asmanpay.favorites.Amounts
+import com.eriktemiraliev.asmanpay.favorites.FavoriteAmount
+import com.eriktemiraliev.asmanpay.favorites.FavoriteError
+import com.eriktemiraliev.asmanpay.favorites.FavoriteList
+import com.eriktemiraliev.asmanpay.favorites.FavoriteRepository
 import java.text.DateFormat
 import java.util.Date
+import java.util.UUID
 
+/**
+ * The converter. [initialConversion], when set, pre-fills it, such as a favorite
+ * the user picked on the Favorites tab.
+ */
 @Composable
-fun HomeScreen() {
-    var amount by remember { mutableStateOf("") }
-    var fromCurrency by remember { mutableStateOf("USD") }
-    var toCurrency by remember { mutableStateOf("CNY") }
+fun HomeScreen(initialConversion: FavoriteAmount? = null) {
+    var amount by remember { mutableStateOf(initialConversion?.amount ?: "") }
+    var fromCurrency by remember { mutableStateOf(initialConversion?.fromCurrency ?: "USD") }
+    var toCurrency by remember { mutableStateOf(initialConversion?.toCurrency ?: "CNY") }
+
+    val context = LocalContext.current
+    val favoriteRepository = remember { FavoriteRepository(context) }
+    var favorites by remember { mutableStateOf(favoriteRepository.load()) }
+    fun updateFavorites(newList: FavoriteList) {
+        favorites = newList
+        favoriteRepository.save(newList)
+    }
 
     // Start from the rates saved on this device (or the samples), then refresh from the network.
-    val context = LocalContext.current
     val rateRepository = remember { RateRepository(context) }
     var rates by remember { mutableStateOf(rateRepository.cached() ?: ExchangeRates.sample) }
     LaunchedEffect(rateRepository) {
         rateRepository.fetchLatest()?.let { rates = it }
     }
 
-    val numericAmount = amount.toDoubleOrNull() ?: 0.0
+    // Accept "1 000" and "12,5" like favorites do, but convert any amount, however large or precise.
+    val numericAmount = Amounts.canonical(amount)?.toDouble() ?: amount.toDoubleOrNull() ?: 0.0
 
     val result = calculateExchange(
         amount = numericAmount,
@@ -120,24 +144,63 @@ fun HomeScreen() {
                         keyboardType = KeyboardType.Number
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    SaveFavoriteButton(
+                        amount = amount,
+                        from = fromCurrency,
+                        to = toCurrency,
+                        favorites = favorites,
+                        onSave = { result ->
+                            when (result) {
+                                is AddFavoriteResult.Added -> updateFavorites(result.list)
+                                is AddFavoriteResult.Rejected -> Unit
+                            }
+                        }
+                    )
 
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    val shortcuts = favorites.shortcuts()
                     Text(
-                        text = stringResource(R.string.quick_amounts),
+                        text = stringResource(
+                            if (shortcuts.isEmpty()) R.string.quick_amounts else R.string.favorites_shortcuts_title
+                        ),
                         color = NavyBlue,
                         fontWeight = FontWeight.SemiBold
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        QuickAmountButton("100") { amount = "100" }
-                        QuickAmountButton("500") { amount = "500" }
-                        QuickAmountButton("1000") { amount = "1000" }
-                        QuickAmountButton("5000") { amount = "5000" }
+                    if (shortcuts.isEmpty()) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            DEFAULT_QUICK_AMOUNTS.forEach { quick ->
+                                QuickAmountButton(quick) { amount = quick }
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = stringResource(R.string.favorites_shortcuts_hint),
+                            color = Color.Gray,
+                            fontSize = 12.sp
+                        )
+                    } else {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState())
+                        ) {
+                            shortcuts.forEach { favorite ->
+                                FavoriteShortcutButton(favorite) {
+                                    amount = favorite.amount
+                                    fromCurrency = favorite.fromCurrency
+                                    toCurrency = favorite.toCurrency
+                                    updateFavorites(favorites.recordUse(favorite.id))
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -192,6 +255,76 @@ fun HomeScreen() {
                 }
             }
         }
+    }
+}
+
+/** Amount-only shortcuts offered until the user saves favorites of their own. */
+private val DEFAULT_QUICK_AMOUNTS = listOf("100", "500", "1000", "5000")
+
+/**
+ * Saves the converter's current amount and pair as a favorite. Shows a filled star
+ * once that conversion is saved, and is disabled until there's something valid to save.
+ */
+@Composable
+private fun SaveFavoriteButton(
+    amount: String,
+    from: String,
+    to: String,
+    favorites: FavoriteList,
+    onSave: (AddFavoriteResult) -> Unit
+) {
+    val context = LocalContext.current
+    val alreadySaved = favorites.contains(amount, from, to)
+    val canSave = !alreadySaved && Amounts.canonical(amount) != null && from != to
+    val limitMessage = stringResource(R.string.favorites_error_limit, FavoriteList.MAX_FAVORITES)
+
+    TextButton(
+        onClick = {
+            val result = favorites.add(
+                amountInput = amount,
+                from = from,
+                to = to,
+                id = UUID.randomUUID().toString(),
+                nowMillis = System.currentTimeMillis()
+            )
+            if (result is AddFavoriteResult.Rejected && result.error == FavoriteError.LIMIT_REACHED) {
+                Toast.makeText(context, limitMessage, Toast.LENGTH_LONG).show()
+            }
+            onSave(result)
+        },
+        enabled = canSave,
+        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 4.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Star,
+            contentDescription = null,
+            tint = if (alreadySaved) StarGold else if (canSave) BrightBlue else Color.LightGray,
+            modifier = Modifier.size(20.dp)
+        )
+        Spacer(modifier = Modifier.width(6.dp))
+        Text(
+            text = stringResource(if (alreadySaved) R.string.favorites_saved else R.string.favorites_save_current),
+            color = if (alreadySaved) NavyBlue else Color.Unspecified
+        )
+    }
+}
+
+@Composable
+private fun FavoriteShortcutButton(favorite: FavoriteAmount, onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        shape = RoundedCornerShape(16.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFFE8F2FF),
+            contentColor = NavyBlue
+        ),
+        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 12.dp)
+    ) {
+        Text(
+            text = favoriteConversionText(favorite),
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp
+        )
     }
 }
 

@@ -86,9 +86,33 @@
     </plurals>
 
     <string name="favorite_amounts_title">Избранные суммы</string>
-    <string name="favorite_amounts_subtitle">Сохраните часто используемые суммы</string>
+    <string name="favorite_amounts_subtitle">Быстрые кнопки для повторяющихся обменов</string>
     <string name="amount_label">Сумма</string>
     <string name="add_favorite_amount">Добавить сумму</string>
+    <string name="favorites_add_title">Сохранить обмен</string>
+    <string name="favorites_empty_title">Пока нет избранного</string>
+    <string name="favorites_empty_message">Сохраните суммы, которые часто конвертируете, например аренду или оплату учёбы. Самые используемые появятся на главном экране.</string>
+    <string name="favorites_conversion">%1$s %2$s → %3$s</string>
+    <string name="favorites_estimate">≈ %1$s %2$s по текущему курсу</string>
+    <string name="favorites_not_used">Ещё не использовалась</string>
+    <plurals name="favorites_used_count">
+        <item quantity="one">Использована %d раз</item>
+        <item quantity="few">Использована %d раза</item>
+        <item quantity="many">Использована %d раз</item>
+        <item quantity="other">Использована %d раза</item>
+    </plurals>
+    <string name="favorites_remove_description">Удалить %1$s</string>
+    <string name="favorites_shortcuts_title">Избранное</string>
+    <string name="favorites_shortcuts_hint">Совет: сохраните обмен в избранное, и здесь появятся ваши кнопки.</string>
+    <string name="favorites_save_current">В избранное</string>
+    <string name="favorites_saved">Сохранено в избранном</string>
+    <string name="favorites_error_invalid_amount">Введите сумму больше нуля.</string>
+    <string name="favorites_error_too_many_decimals">Не более %1$d знаков после запятой.</string>
+    <string name="favorites_error_too_large">Сумма должна быть не больше %1$s.</string>
+    <string name="favorites_error_unsupported_currency">Эта валюта не поддерживается.</string>
+    <string name="favorites_error_same_currency">Выберите две разные валюты.</string>
+    <string name="favorites_error_duplicate">Этот обмен уже в избранном.</string>
+    <string name="favorites_error_limit">Можно сохранить до %1$d сумм. Удалите одну, чтобы добавить новую.</string>
 
     <string name="profile_title">Профиль</string>
     <string name="profile_subtitle">Прототип аккаунта с паспортом</string>

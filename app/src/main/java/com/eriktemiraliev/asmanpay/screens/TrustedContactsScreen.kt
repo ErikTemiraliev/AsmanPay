@@ -37,7 +37,6 @@ import java.util.Date
 import java.util.UUID
 
 private val PendingAmber = Color(0xFFB7791F)
-private val StarGold = Color(0xFFF2B01E)
 
 @Composable
 fun TrustedContactsScreen() {
