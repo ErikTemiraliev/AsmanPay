@@ -8,7 +8,7 @@ Helps users check exchange rates between CNY, USD, KGS and KZT, and avoid common
 
 ## Features
 
-- Currency conversion across CNY, USD, KGS and KZT (sample reference rates for now)
+- Currency conversion across CNY, USD, KGS and KZT with live reference rates ([Rates By Exchange Rate API](https://www.exchangerate-api.com)), cached for offline use
 - Anti-scam detection/warnings
 - Simple, clean interface
 

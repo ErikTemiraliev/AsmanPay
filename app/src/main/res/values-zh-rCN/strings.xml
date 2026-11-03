@@ -72,4 +72,8 @@
     <string name="validation_chinese_phone_required">请输入带国家区号的正确电话号码。</string>
     <string name="validation_email_required">请输入正确的邮箱地址。</string>
     <string name="validation_password_required">密码至少需要6位。</string>
+    <string name="rates_live_updated">实时汇率，更新于 %1$s</string>
+    <string name="rates_live">实时汇率</string>
+    <string name="rates_cached">离线：使用 %1$s 保存的汇率</string>
+    <string name="rates_cached_unknown_time">离线：使用已保存的汇率</string>
 </resources>
