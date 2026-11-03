@@ -1,4 +1,4 @@
-# Asman Pay (Android)
+# Asman Pay 
 
 Asman Pay is a currency conversion and anti-scam helper for the China–Central Asia corridor. It grew out of the SilkRate prototype.
 
