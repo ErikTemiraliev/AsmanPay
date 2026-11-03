@@ -4,6 +4,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 class ContactDirectoryTest {
 
@@ -67,9 +68,11 @@ class ContactDirectoryTest {
         assertEquals(4.5, aibek.averageRating!!, 1e-9)
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test
     fun rejectsRatingsOutsideOneToFive() {
-        ContactDirectory().added("Aibek", "+996555123456").recordExchange("Aibek", 6)
+        assertFailsWith<IllegalArgumentException> {
+            ContactDirectory().added("Aibek", "+996555123456").recordExchange("Aibek", 6)
+        }
     }
 
     @Test
