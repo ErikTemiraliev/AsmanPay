@@ -37,7 +37,8 @@ To change a screen or a text, edit it once in `shared/` and both apps get it.
 
 **iPhone (needs a Mac with Xcode):**
 
-1. Install Xcode from the Mac App Store and open it once so it finishes installing.
+1. Install Xcode 26 or newer from the Mac App Store and open it once so it finishes installing
+   (older Xcode versions can't build the shared UI library).
 2. Open `iosApp/iosApp.xcodeproj` in Xcode.
 3. At the top, pick an iPhone simulator (for example "iPhone 16") and press Run (▶).
    The first build takes several minutes because it compiles the Kotlin code.

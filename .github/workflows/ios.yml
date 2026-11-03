@@ -15,7 +15,8 @@ concurrency:
 jobs:
   build:
     name: Build iOS app and run shared tests on the simulator
-    runs-on: macos-15
+    # Compose Multiplatform 1.11 needs the iOS 26 SDK, which comes with Xcode 26.
+    runs-on: macos-26
     timeout-minutes: 60
 
     steps:
@@ -36,6 +37,9 @@ jobs:
         with:
           path: ~/.konan
           key: konan-${{ runner.os }}-${{ hashFiles('gradle/libs.versions.toml') }}
+
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Run shared unit tests on the iOS simulator
         run: ./gradlew --stacktrace :shared:iosSimulatorArm64Test
