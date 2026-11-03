@@ -8,6 +8,9 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.res.stringResource
 import com.eriktemiraliev.asmanpay.R
 import com.eriktemiraliev.asmanpay.exchange.ExchangeRates
+import com.eriktemiraliev.asmanpay.exchange.RateRepository
+import com.eriktemiraliev.asmanpay.exchange.RateSource
+import com.eriktemiraliev.asmanpay.exchange.RateTable
 import com.eriktemiraliev.asmanpay.exchange.calculateExchange
 import android.util.Patterns
 import androidx.compose.foundation.background
@@ -21,12 +24,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.DateFormat
+import java.util.Date
 
 private val NavyBlue = Color(0xFF0B1F3A)
 private val BrightBlue = Color(0xFF1683E8)
@@ -356,18 +362,28 @@ fun HomeScreen() {
     var fromCurrency by remember { mutableStateOf("USD") }
     var toCurrency by remember { mutableStateOf("CNY") }
 
+    // Start from the rates saved on this device (or the samples), then refresh from the network.
+    val context = LocalContext.current
+    val rateRepository = remember { RateRepository(context) }
+    var rates by remember { mutableStateOf(rateRepository.cached() ?: ExchangeRates.sample) }
+    LaunchedEffect(rateRepository) {
+        rateRepository.fetchLatest()?.let { rates = it }
+    }
+
     val numericAmount = amount.toDoubleOrNull() ?: 0.0
 
     val result = calculateExchange(
         amount = numericAmount,
         from = fromCurrency,
-        to = toCurrency
+        to = toCurrency,
+        table = rates
     )
 
     val currentRate = calculateExchange(
         amount = 1.0,
         from = fromCurrency,
-        to = toCurrency
+        to = toCurrency,
+        table = rates
     )
 
     LazyColumn(
@@ -502,6 +518,10 @@ fun HomeScreen() {
                             fontSize = 14.sp
                         )
                     }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    RateStatusText(rates)
                 }
             }
         }
@@ -1105,4 +1125,39 @@ fun isValidChinesePhone(phone: String): Boolean {
     val internationalPhone = Regex("^\\+[1-9]\\d{6,14}$")
 
     return internationalPhone.matches(cleaned)
+}
+
+@Composable
+fun RateStatusText(rates: RateTable) {
+    val updatedAt = rates.updatedAtEpochSeconds?.let {
+        DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
+            .format(Date(it * 1000))
+    }
+
+    val status = when {
+        rates.source == RateSource.LIVE && updatedAt != null ->
+            stringResource(R.string.rates_live_updated, updatedAt)
+        rates.source == RateSource.LIVE ->
+            stringResource(R.string.rates_live)
+        rates.source == RateSource.CACHED && updatedAt != null ->
+            stringResource(R.string.rates_cached, updatedAt)
+        rates.source == RateSource.CACHED ->
+            stringResource(R.string.rates_cached_unknown_time)
+        else ->
+            stringResource(R.string.sample_rates_notice)
+    }
+
+    Text(
+        text = status,
+        color = Color.White.copy(alpha = 0.7f),
+        fontSize = 12.sp
+    )
+
+    if (rates.source != RateSource.SAMPLE) {
+        Text(
+            text = stringResource(R.string.rates_attribution),
+            color = Color.White.copy(alpha = 0.5f),
+            fontSize = 11.sp
+        )
+    }
 }

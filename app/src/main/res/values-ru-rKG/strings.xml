@@ -72,4 +72,8 @@
     <string name="validation_chinese_phone_required">Введите правильный номер телефона с кодом страны.</string>
     <string name="validation_email_required">Введите правильный email.</string>
     <string name="validation_password_required">Пароль должен быть не менее 6 символов.</string>
+    <string name="rates_live_updated">Актуальные курсы, обновлено %1$s</string>
+    <string name="rates_live">Актуальные курсы</string>
+    <string name="rates_cached">Нет сети: сохранённые курсы от %1$s</string>
+    <string name="rates_cached_unknown_time">Нет сети: сохранённые курсы</string>
 </resources>

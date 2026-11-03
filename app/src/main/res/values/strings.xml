@@ -72,4 +72,9 @@
     <string name="validation_chinese_phone_required">Please enter a valid phone number with country code.</string>
     <string name="validation_email_required">Please enter a valid email address.</string>
     <string name="validation_password_required">Password must be at least 6 characters.</string>
+    <string name="rates_live_updated">Live rates, updated %1$s</string>
+    <string name="rates_live">Live rates</string>
+    <string name="rates_cached">Offline: using saved rates from %1$s</string>
+    <string name="rates_cached_unknown_time">Offline: using saved rates</string>
+    <string name="rates_attribution" translatable="false">Rates By Exchange Rate API</string>
 </resources>
