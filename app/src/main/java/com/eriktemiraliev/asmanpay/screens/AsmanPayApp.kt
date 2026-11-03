@@ -10,6 +10,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.eriktemiraliev.asmanpay.favorites.FavoriteAmount
 
 @Composable
@@ -62,7 +64,7 @@ fun MainAppScreen(
 
     Scaffold(
         bottomBar = {
-            NavigationBar(containerColor = Color.White) {
+            NavigationBar(containerColor = Color.White, tonalElevation = 0.dp) {
                 tabs.forEachIndexed { index, title ->
                     NavigationBarItem(
                         selected = selectedTab == index,
@@ -76,11 +78,13 @@ fun MainAppScreen(
                                 contentDescription = title
                             )
                         },
-                        label = { Text(title) },
+                        label = { Text(title, fontWeight = FontWeight.SemiBold) },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = BrightBlue,
                             selectedTextColor = BrightBlue,
-                            indicatorColor = Color(0xFFE8F2FF)
+                            indicatorColor = SoftBlue,
+                            unselectedIconColor = MutedText,
+                            unselectedTextColor = MutedText
                         )
                     )
                 }

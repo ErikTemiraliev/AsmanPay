@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -84,28 +85,78 @@ fun HomeScreen(initialConversion: FavoriteAmount? = null) {
             .padding(20.dp)
     ) {
         item {
-            HomeHeroCard()
+            HomeTopBar()
 
-            Spacer(modifier = Modifier.height(18.dp))
+            Spacer(modifier = Modifier.height(16.dp))
+
+            GradientCard {
+                Column {
+                    Text(
+                        text = stringResource(R.string.estimated_result_label),
+                        color = Color.White.copy(alpha = 0.8f),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    Text(
+                        text = stringResource(
+                            R.string.estimated_result_value,
+                            result,
+                            toCurrency
+                        ),
+                        color = Color.White,
+                        fontSize = 36.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        letterSpacing = (-0.5).sp
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Box(
+                        modifier = Modifier
+                            .background(
+                                Color.White.copy(alpha = 0.18f),
+                                RoundedCornerShape(50)
+                            )
+                            .padding(horizontal = 14.dp, vertical = 8.dp)
+                    ) {
+                        Text(
+                            text = "${stringResource(R.string.rate_label)}: 1 $fromCurrency = %.4f $toCurrency".format(currentRate),
+                            color = Color.White,
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    RateStatusText(rates)
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(28.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
             ) {
                 Column(modifier = Modifier.padding(22.dp)) {
                     Text(
                         text = stringResource(R.string.convert_card_title),
                         color = NavyBlue,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.ExtraBold
                     )
 
                     Spacer(modifier = Modifier.height(4.dp))
 
                     Text(
                         text = stringResource(R.string.exchange_pair),
-                        color = Color.Gray,
+                        color = MutedText,
                         fontSize = 14.sp
                     )
 
@@ -182,7 +233,7 @@ fun HomeScreen(initialConversion: FavoriteAmount? = null) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = stringResource(R.string.favorites_shortcuts_hint),
-                            color = Color.Gray,
+                            color = MutedText,
                             fontSize = 12.sp
                         )
                     } else {
@@ -205,55 +256,7 @@ fun HomeScreen(initialConversion: FavoriteAmount? = null) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(18.dp))
-
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(28.dp),
-                colors = CardDefaults.cardColors(containerColor = NavyBlue)
-            ) {
-                Column(modifier = Modifier.padding(24.dp)) {
-                    Text(
-                        text = stringResource(R.string.estimated_result_label),
-                        color = Color.White.copy(alpha = 0.75f),
-                        fontSize = 15.sp
-                    )
-
-                    Spacer(modifier = Modifier.height(6.dp))
-
-                    Text(
-                        text = stringResource(
-                            R.string.estimated_result_value,
-                            result,
-                            toCurrency
-                        ),
-                        color = Color.White,
-                        fontSize = 34.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                Color.White.copy(alpha = 0.12f),
-                                RoundedCornerShape(14.dp)
-                            )
-                            .padding(horizontal = 14.dp, vertical = 10.dp)
-                    ) {
-                        Text(
-                            text = "${stringResource(R.string.rate_label)}: 1 $fromCurrency = %.4f $toCurrency".format(currentRate),
-                            color = Color.White.copy(alpha = 0.9f),
-                            fontSize = 14.sp
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    RateStatusText(rates)
-                }
-            }
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
@@ -313,9 +316,9 @@ private fun SaveFavoriteButton(
 private fun FavoriteShortcutButton(favorite: FavoriteAmount, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFE8F2FF),
+            containerColor = SoftBlue,
             contentColor = NavyBlue
         ),
         contentPadding = PaddingValues(horizontal = 14.dp, vertical = 12.dp)
@@ -328,27 +331,31 @@ private fun FavoriteShortcutButton(favorite: FavoriteAmount, onClick: () -> Unit
     }
 }
 
+/** The brand row at the top of Home: the mark, the name and a short promise. */
 @Composable
-fun HomeHeroCard() {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(30.dp),
-        colors = CardDefaults.cardColors(containerColor = NavyBlue)
+fun HomeTopBar() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 4.dp)
     ) {
-        Column(modifier = Modifier.padding(26.dp)) {
+        AsmanLogo(size = 44.dp)
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        Column {
             Text(
                 text = stringResource(R.string.home_hero_title),
-                color = Color.White,
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold
+                color = NavyBlue,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.ExtraBold,
+                letterSpacing = (-0.3).sp
             )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
             Text(
                 text = stringResource(R.string.home_hero_subtitle),
-                color = Color.White.copy(alpha = 0.82f),
-                fontSize = 16.sp
+                color = MutedText,
+                fontSize = 13.sp
             )
         }
     }
@@ -362,9 +369,9 @@ fun RowScope.QuickAmountButton(
     Button(
         onClick = onClick,
         modifier = Modifier.weight(1f),
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFE8F2FF),
+            containerColor = SoftBlue,
             contentColor = NavyBlue
         ),
         contentPadding = PaddingValues(vertical = 12.dp)
@@ -396,12 +403,13 @@ fun CurrencySelector(
                 modifier = Modifier.weight(1f),
                 contentPadding = PaddingValues(horizontal = 4.dp, vertical = 8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selectedCurrency) NavyBlue else Color.White,
+                    containerColor = if (selectedCurrency) BrightBlue else SoftBlue,
                     contentColor = if (selectedCurrency) Color.White else NavyBlue
                 ),
-                shape = RoundedCornerShape(14.dp)
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp),
+                shape = RoundedCornerShape(50)
             ) {
-                Text(currency)
+                Text(currency, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -429,14 +437,14 @@ fun RateStatusText(rates: RateTable) {
 
     Text(
         text = status,
-        color = Color.White.copy(alpha = 0.7f),
+        color = Color.White.copy(alpha = 0.85f),
         fontSize = 12.sp
     )
 
     if (rates.source != RateSource.SAMPLE) {
         Text(
             text = stringResource(R.string.rates_attribution),
-            color = Color.White.copy(alpha = 0.5f),
+            color = Color.White.copy(alpha = 0.7f),
             fontSize = 11.sp
         )
     }

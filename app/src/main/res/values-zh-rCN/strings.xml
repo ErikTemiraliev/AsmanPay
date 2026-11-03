@@ -8,8 +8,8 @@
     <string name="save_changes">保存修改</string>
     <string name="account_identity">身份信息</string>
 
-    <string name="app_name">AsmanPay</string>
-    <string name="home_hero_title">AsmanPay</string>
+    <string name="app_name">Asman Pay</string>
+    <string name="home_hero_title">Asman Pay</string>
     <string name="home_hero_subtitle">让换汇更安全</string>
     <string name="exchange_pair">换算货币</string>
     <string name="quick_amounts">快捷金额</string>
@@ -61,7 +61,7 @@
     <string name="contacts_add_title">新的可信联系人</string>
     <string name="contacts_empty_title">还没有可信联系人</string>
     <string name="contacts_empty_message">添加与您换汇的人。每次换汇后进行评分，就能看出谁更可靠。</string>
-    <string name="contacts_verification_notice">您添加的联系人标记为“未认证”。AsmanPay 身份认证将在后续版本推出。</string>
+    <string name="contacts_verification_notice">您添加的联系人标记为“未认证”。Asman Pay 身份认证将在后续版本推出。</string>
     <string name="contacts_name_label">全名</string>
     <string name="contacts_note_label">备注（可选），例如在哪里认识</string>
     <string name="contacts_save">保存</string>

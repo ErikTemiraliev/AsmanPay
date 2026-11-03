@@ -8,10 +8,10 @@
     <string name="save_changes">Save Changes</string>
 
     <string name="account_identity">Account Identity</string>
-    <string name="app_name">AsmanPay</string>
+    <string name="app_name">Asman Pay</string>
     <string name="app_subtitle">Safe currency exchange helper</string>
 
-    <string name="home_hero_title">AsmanPay</string>
+    <string name="home_hero_title">Asman Pay</string>
     <string name="home_hero_subtitle">Currency exchange made safer</string>
     <string name="exchange_pair">Exchange Pair</string>
     <string name="quick_amounts">Quick Amounts</string>
@@ -61,7 +61,7 @@
     <string name="contacts_add_title">New trusted contact</string>
     <string name="contacts_empty_title">No trusted contacts yet</string>
     <string name="contacts_empty_message">Add the people you exchange currency with. After each exchange, rate it so you can see who has been reliable.</string>
-    <string name="contacts_verification_notice">Contacts you add are marked Not verified. Identity verification by AsmanPay is coming in a later version.</string>
+    <string name="contacts_verification_notice">Contacts you add are marked Not verified. Identity verification by Asman Pay is coming in a later version.</string>
     <string name="contacts_name_label">Full name</string>
     <string name="contacts_note_label">Note (optional), e.g. where you met</string>
     <string name="contacts_save">Save</string>
