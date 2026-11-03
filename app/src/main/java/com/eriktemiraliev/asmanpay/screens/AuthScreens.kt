@@ -6,7 +6,6 @@ import android.util.Patterns
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -37,22 +36,27 @@ fun SignUpScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
-            Spacer(modifier = Modifier.height(26.dp))
+            Spacer(modifier = Modifier.height(32.dp))
+
+            AsmanLogo(size = 72.dp)
+
+            Spacer(modifier = Modifier.height(20.dp))
 
             Text(
                 text = stringResource(R.string.app_name),
-                fontSize = 38.sp,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineLarge,
                 color = NavyBlue
             )
+
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = stringResource(R.string.app_subtitle),
                 fontSize = 15.sp,
-                color = Color.Gray
+                color = MutedText
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
             AppTextField(
                 value = passportNumber,
@@ -91,7 +95,7 @@ fun SignUpScreen(
             if (errorMessage.isNotEmpty()) {
                 Text(
                     text = errorMessage,
-                    color = Color.Red,
+                    color = ErrorRed,
                     fontSize = 14.sp,
                     modifier = Modifier.padding(top = 8.dp)
                 )
@@ -99,7 +103,8 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(18.dp))
 
-            Button(
+            PrimaryButton(
+                text = stringResource(R.string.create_account_button),
                 onClick = {
                     errorMessage = validateSignUp(
                         passportNumber,
@@ -121,16 +126,11 @@ fun SignUpScreen(
                             )
                         )
                     }
-                },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = NavyBlue),
-                shape = RoundedCornerShape(14.dp)
-            ) {
-                Text(stringResource(R.string.create_account_button))
-            }
+                }
+            )
 
             TextButton(onClick = onGoToLogin) {
-                Text(stringResource(R.string.already_have_account))
+                Text(stringResource(R.string.already_have_account), color = BrightBlue, fontWeight = FontWeight.SemiBold)
             }
 
 
@@ -163,18 +163,23 @@ fun LoginScreen(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(60.dp))
+        Spacer(modifier = Modifier.height(56.dp))
+
+        AsmanLogo(size = 72.dp)
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = stringResource(R.string.welcome_back),
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.headlineLarge,
             color = NavyBlue
         )
 
+        Spacer(modifier = Modifier.height(4.dp))
+
         Text(
             text = stringResource(R.string.login_subtitle),
-            color = Color.Gray
+            color = MutedText
         )
 
         Spacer(modifier = Modifier.height(28.dp))
@@ -196,7 +201,7 @@ fun LoginScreen(
         if (errorMessage.isNotEmpty()) {
             Text(
                 text = errorMessage,
-                color = Color.Red,
+                color = ErrorRed,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(top = 8.dp)
             )
@@ -204,7 +209,8 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(18.dp))
 
-        Button(
+        PrimaryButton(
+            text = stringResource(R.string.log_in_button),
             onClick = {
                 val loginOk = loginInput == demoUser.email ||
                         loginInput == demoUser.phoneNumber ||
@@ -215,16 +221,11 @@ fun LoginScreen(
                 } else {
                     errorMessage = "Demo login: erik@example.com / 123456"
                 }
-            },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = NavyBlue),
-            shape = RoundedCornerShape(14.dp)
-        ) {
-            Text(stringResource(R.string.log_in_button))
-        }
+            }
+        )
 
         TextButton(onClick = onGoToSignup) {
-            Text(stringResource(R.string.create_new_account))
+            Text(stringResource(R.string.create_new_account), color = BrightBlue, fontWeight = FontWeight.SemiBold)
         }
 
         Spacer(modifier = Modifier.height(16.dp))

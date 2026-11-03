@@ -31,11 +31,11 @@ fun ProfileScreen(
     val profileUpdatedText = stringResource(R.string.profile_updated)
 
     val avatarColors = listOf(
-        BrightBlue,
-        Color(0xFF304FFE),
-        Color(0xFF00695C),
-        Color(0xFF4A148C),
-        Color(0xFF1565C0)
+        NavyBlue,
+        Color(0xFF7C5CFF),
+        Color(0xFF00A88F),
+        Color(0xFFFF7A59),
+        Color(0xFFE0488B)
     )
 
     LazyColumn(
@@ -45,29 +45,13 @@ fun ProfileScreen(
             .padding(20.dp)
     ) {
         item {
-            Text(
-                text = stringResource(R.string.profile_title),
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-                color = NavyBlue
+            Header(
+                title = stringResource(R.string.profile_title),
+                subtitle = stringResource(R.string.account_settings)
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text(
-                text = stringResource(R.string.account_settings),
-                color = Color.Gray,
-                fontSize = 15.sp
-            )
-
-            Spacer(modifier = Modifier.height(18.dp))
-
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(28.dp),
-                colors = CardDefaults.cardColors(containerColor = NavyBlue)
-            ) {
-                Column(modifier = Modifier.padding(22.dp)) {
+            GradientCard {
+                Column {
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -107,9 +91,9 @@ fun ProfileScreen(
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.White,
-                            contentColor = NavyBlue
+                            contentColor = BrightBlue
                         ),
-                        shape = RoundedCornerShape(16.dp),
+                        shape = RoundedCornerShape(50),
                         contentPadding = PaddingValues(vertical = 12.dp)
                     ) {
                         Text(
@@ -125,7 +109,7 @@ fun ProfileScreen(
             SectionCard(title = stringResource(R.string.account_identity)) {
                 Text(
                     text = stringResource(R.string.passport_number_value, user.passportNumber),
-                    color = Color(0xFF222222),
+                    color = NavyBlue,
                     fontSize = 15.sp
                 )
 
@@ -210,8 +194,8 @@ fun ProfileScreen(
                     message = profileUpdatedText
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = NavyBlue),
-                shape = RoundedCornerShape(18.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = BrightBlue),
+                shape = RoundedCornerShape(50),
                 contentPadding = PaddingValues(vertical = 14.dp)
             ) {
                 Text(
@@ -244,7 +228,7 @@ fun ProfileAvatar(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = initials.ifBlank { "SR" },
+            text = initials.ifBlank { "AP" },
             color = Color.White,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold

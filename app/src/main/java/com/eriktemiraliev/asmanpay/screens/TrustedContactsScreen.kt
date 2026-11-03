@@ -74,7 +74,7 @@ fun TrustedContactsScreen() {
                 item { EmptyDirectoryCard(onAdd = { showAddDialog = true }) }
             } else {
                 item {
-                    OutlinedTextField(
+                    TextField(
                         value = query,
                         onValueChange = { query = it },
                         modifier = Modifier
@@ -83,7 +83,8 @@ fun TrustedContactsScreen() {
                         placeholder = { Text(stringResource(R.string.contacts_search_hint)) },
                         leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                         singleLine = true,
-                        shape = RoundedCornerShape(14.dp)
+                        shape = RoundedCornerShape(50),
+                        colors = appTextFieldColors()
                     )
                 }
 
@@ -91,7 +92,7 @@ fun TrustedContactsScreen() {
                     item {
                         Text(
                             text = stringResource(R.string.contacts_no_matches, query.trim()),
-                            color = Color.Gray,
+                            color = MutedText,
                             modifier = Modifier.padding(vertical = 16.dp)
                         )
                     }
@@ -186,12 +187,12 @@ fun TrustedContactsScreen() {
 @Composable
 private fun EmptyDirectoryCard(onAdd: () -> Unit) {
     SectionCard(title = stringResource(R.string.contacts_empty_title)) {
-        Text(text = stringResource(R.string.contacts_empty_message), color = Color.Gray)
+        Text(text = stringResource(R.string.contacts_empty_message), color = MutedText)
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = onAdd,
             colors = ButtonDefaults.buttonColors(containerColor = BrightBlue),
-            shape = RoundedCornerShape(14.dp)
+            shape = RoundedCornerShape(50)
         ) {
             Icon(Icons.Default.Add, contentDescription = null)
             Spacer(modifier = Modifier.width(8.dp))
@@ -204,7 +205,7 @@ private fun EmptyDirectoryCard(onAdd: () -> Unit) {
 private fun VerificationNotice() {
     Text(
         text = stringResource(R.string.contacts_verification_notice),
-        color = Color.Gray,
+        color = MutedText,
         fontSize = 13.sp,
         modifier = Modifier.padding(top = 12.dp)
     )
@@ -223,7 +224,7 @@ fun ContactCard(
             .fillMaxWidth()
             .padding(vertical = 8.dp)
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(18.dp),
+        shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(modifier = Modifier.padding(18.dp)) {
@@ -231,12 +232,12 @@ fun ContactCard(
                 Box(
                     modifier = Modifier
                         .size(44.dp)
-                        .background(NavyBlue, RoundedCornerShape(50)),
+                        .background(SoftBlue, RoundedCornerShape(50)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = contact.initials,
-                        color = Color.White,
+                        color = BrightBlue,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp
                     )
@@ -263,7 +264,7 @@ fun ContactCard(
                         }
                     }
 
-                    Text(text = PhoneNumbers.format(contact.phone), color = Color.Gray)
+                    Text(text = PhoneNumbers.format(contact.phone), color = MutedText)
                     Text(
                         text = reputationText(contact),
                         color = BrightBlue,
@@ -286,7 +287,7 @@ fun ContactCard(
                         R.string.contacts_added_on,
                         DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(contact.addedAtMillis))
                     ),
-                    color = Color.Gray,
+                    color = MutedText,
                     fontSize = 13.sp
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -320,7 +321,7 @@ private fun VerificationBadge(status: VerificationStatus) {
     val (label, color) = when (status) {
         VerificationStatus.VERIFIED -> stringResource(R.string.verified_label) to SuccessGreen
         VerificationStatus.PENDING -> stringResource(R.string.pending_label) to PendingAmber
-        VerificationStatus.UNVERIFIED -> stringResource(R.string.unverified_label) to Color.Gray
+        VerificationStatus.UNVERIFIED -> stringResource(R.string.unverified_label) to MutedText
     }
     Text(text = label, color = color, fontSize = 13.sp, fontWeight = FontWeight.Bold)
 }
@@ -352,7 +353,7 @@ private fun AddContactDialog(
                     label = stringResource(R.string.chinese_phone_label),
                     keyboardType = KeyboardType.Phone
                 )
-                OutlinedTextField(
+                TextField(
                     value = note,
                     onValueChange = { note = it; error = null },
                     label = { Text(stringResource(R.string.contacts_note_label)) },
@@ -361,7 +362,8 @@ private fun AddContactDialog(
                         .padding(vertical = 6.dp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                     maxLines = 3,
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(18.dp),
+                    colors = appTextFieldColors()
                 )
                 error?.let {
                     Text(
@@ -404,7 +406,7 @@ private fun RateExchangeDialog(
         title = { Text(stringResource(R.string.contacts_rate_title, contact.name)) },
         text = {
             Column {
-                Text(stringResource(R.string.contacts_rate_message), color = Color.Gray)
+                Text(stringResource(R.string.contacts_rate_message), color = MutedText)
                 Spacer(modifier = Modifier.height(12.dp))
                 Row {
                     for (star in TrustedContact.MIN_RATING..TrustedContact.MAX_RATING) {

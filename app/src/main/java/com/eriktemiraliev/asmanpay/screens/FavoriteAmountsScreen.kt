@@ -73,7 +73,7 @@ fun FavoriteAmountsScreen(onUse: (FavoriteAmount) -> Unit) {
                 if (list.isFull) {
                     Text(
                         text = stringResource(R.string.favorites_error_limit, FavoriteList.MAX_FAVORITES),
-                        color = Color.Gray
+                        color = MutedText
                     )
                 } else {
                     AppTextField(
@@ -117,7 +117,7 @@ fun FavoriteAmountsScreen(onUse: (FavoriteAmount) -> Unit) {
                         },
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(containerColor = BrightBlue),
-                        shape = RoundedCornerShape(14.dp)
+                        shape = RoundedCornerShape(50)
                     ) {
                         Text(stringResource(R.string.add_favorite_amount))
                     }
@@ -130,7 +130,7 @@ fun FavoriteAmountsScreen(onUse: (FavoriteAmount) -> Unit) {
         if (list.favorites.isEmpty()) {
             item {
                 SectionCard(title = stringResource(R.string.favorites_empty_title)) {
-                    Text(stringResource(R.string.favorites_empty_message), color = Color.Gray)
+                    Text(stringResource(R.string.favorites_empty_message), color = MutedText)
                 }
             }
         }
@@ -164,7 +164,7 @@ fun FavoriteAmountCard(
             .fillMaxWidth()
             .padding(vertical = 6.dp)
             .clickable(onClick = onUse),
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Row(
@@ -174,7 +174,7 @@ fun FavoriteAmountCard(
             Box(
                 modifier = Modifier
                     .size(36.dp)
-                    .background(Color(0xFFE8F2FF), RoundedCornerShape(12.dp)),
+                    .background(SoftBlue, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(Icons.Default.Star, contentDescription = null, tint = BrightBlue, modifier = Modifier.size(20.dp))
@@ -188,7 +188,7 @@ fun FavoriteAmountCard(
                         formatAmount(estimate),
                         favorite.toCurrency
                     ),
-                    color = Color.Gray,
+                    color = MutedText,
                     fontSize = 14.sp
                 )
                 Text(
@@ -208,7 +208,7 @@ fun FavoriteAmountCard(
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = stringResource(R.string.favorites_remove_description, conversion),
-                    tint = Color.Gray
+                    tint = MutedText
                 )
             }
         }
